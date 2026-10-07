@@ -47,8 +47,10 @@ Neighborhood cafe | good coffee, good pasta, good vibes | ☕😌
 
 ## 👥 Group Members
 - Joseph Kristian De Leon
-- [Groupmate Name]
-- [Groupmate Name]
+- Niah Annelle Makinano
+- Dan Antonio Pedragorda
+- Emie Ann Precioso
+- Sean Andrei Taraya
 
 ## 📚 Course
-BSIS/BSIT 3rd Year — Web Development Project, Phase 1
+BSIS 3A
