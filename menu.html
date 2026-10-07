@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu | 1.28 Coffee x Cocktails</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="cocktail-bar.html">Cocktail Bar</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reserve</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <section style="text-align:center; padding:3rem 1rem 1rem;">
+    <h1 style="color:var(--forest); font-weight:300; letter-spacing:2px; font-style:italic;">Our Menu</h1>
+    <p style="color:#666; margin-top:0.5rem; max-width:640px; margin-left:auto; margin-right:auto;">
+      Coffee, tea, rice bowls, pasta, and more — find your perfect pairing.
+    </p>
+  </section>
+
+  <!-- COCKTAIL LOCK BANNER -->
+  <div style="max-width:900px; margin:0 auto 2rem; padding:1.2rem 1.5rem;
+              background:#FFF8E1; border-left:4px solid #E8B93B; border-radius:10px;
+              display:flex; gap:1rem; align-items:flex-start;">
+    <div style="font-size:1.8rem;">🔒</div>
+    <div>
+      <strong style="color:#8B6F00;">Cocktail Bar is reservation-only.</strong>
+      <p style="margin-top:0.3rem; color:#555; font-size:0.93rem;">
+        Cocktails are served upstairs during Cocktail Hours
+        (Wed–Thu 6PM–12MN · Fri–Sat 6PM–2AM). 18+ only, limited seating.
+        <a href="reservation.html" style="color:var(--forest); font-weight:600;">Reserve your slot →</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="menu-controls">
+    <input type="text" id="searchInput" placeholder="🔍 Search menu items..." />
+    <select id="categoryFilter">
+      <option value="All">All Categories</option>
+      <optgroup label="🍽️ Food">
+        <option value="Rice Bowls">🍚 Rice Bowls</option>
+        <option value="Nibblers">🍟 Nibblers</option>
+        <option value="Pasta">🍝 Pasta</option>
+        <option value="All-Day Breakfast">🍳 All-Day Breakfast</option>
+        <option value="Toasties">🥪 Toasties</option>
+        <option value="Kitchen Extras">➕ Kitchen Extras</option>
+      </optgroup>
+      <optgroup label="☕ Drinks">
+        <option value="Espresso Bar">☕ Espresso Bar</option>
+        <option value="Brewed">🧊 Brewed</option>
+        <option value="Non-Coffee & Tea">🍵 Non-Coffee & Tea</option>
+        <option value="Barista Blend">✨ Barista Blend</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <section class="menu-grid" id="menuGrid"></section>
+
+  <footer>
+    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
+      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
+    </p>
+    <p>&copy; 2025 1.28 Coffee x Cocktails. All rights reserved.</p>
+    <p style="margin-top:0.5rem; opacity:0.7;">IG, TikTok, FB: @1.28coffeexcocktails · 1409 Paz Street, Paco, Manila · 0968 715 6240</p>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

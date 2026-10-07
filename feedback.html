@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews | 1.28 Coffee x Cocktails</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cocktail-bar.html">Cocktail Bar</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reserve</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <div class="form-container">
+    <h2>Leave a Review</h2>
+    <div class="success-msg" id="feedbackSuccess">✅ Thank you! Your review has been posted.</div>
+
+    <form id="feedbackForm" novalidate>
+      <div class="form-group">
+        <label for="reviewerName">Your Name *</label>
+        <input type="text" id="reviewerName" placeholder="Juan D." />
+        <div class="error">Please enter your name.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating *</label>
+        <select id="rating">
+          <option value="">Select rating...</option>
+          <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+          <option value="4">⭐⭐⭐⭐ Very Good</option>
+          <option value="3">⭐⭐⭐ Good</option>
+          <option value="2">⭐⭐ Fair</option>
+          <option value="1">⭐ Poor</option>
+        </select>
+        <div class="error">Please select a rating.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="reviewText">Your Review *</label>
+        <textarea id="reviewText" rows="4" placeholder="Tell us about your experience..."></textarea>
+        <div class="error">Please write at least 10 characters.</div>
+      </div>
+
+      <button type="submit" class="btn-primary" style="width:100%;">Submit Review</button>
+    </form>
+  </div>
+
+  <section class="reviews-list" id="reviewsList"></section>
+
+  <footer>
+    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
+      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
+    </p>
+    <p>&copy; 2025 1.28 Coffee x Cocktails. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/feedback.js"></script>
+</body>
+</html>

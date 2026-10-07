@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.28 Coffee x Cocktails | Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cocktail-bar.html">Cocktail Bar</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reserve</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails"
+           style="max-width: 300px; width: 65%; margin: 0 auto 1.8rem; display: block;
+                  background: var(--cream); padding: 1.2rem; border-radius: 16px;
+                  box-shadow: 0 10px 40px rgba(0,0,0,0.3);" />
+      <p style="font-size:1.15rem; letter-spacing:0.5px; max-width:620px; margin:0 auto 2rem;
+                opacity:0.95; font-weight:400; line-height:1.7;">
+        Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
+      </p>
+      <a href="reservation.html" class="btn-primary">Reserve a Table</a>
+      <a href="menu.html" class="btn-secondary">View Menu</a>
+    </div>
+  </section>
+
+  <!-- OPERATING HOURS -->
+  <section class="hours-banner">
+    <h2>🕒 Operating Hours</h2>
+    <div class="hours-grid">
+      <div class="hour-card"><h3>MON – WED</h3><p>10:00 AM – 10:00 PM</p></div>
+      <div class="hour-card"><h3>THU – FRI</h3><p>12:00 PM – 12:00 AM</p></div>
+      <div class="hour-card"><h3>SATURDAY</h3><p>12:00 PM – 11:00 PM</p></div>
+      <div class="hour-card"><h3>SUNDAY</h3><p>Closed</p></div>
+    </div>
+
+    <h2 style="margin-top:3rem;">🍸 Cocktail Hours</h2>
+    <div class="hours-grid">
+      <div class="hour-card"><h3>WED – THU</h3><p>6:00 PM – 12:00 MN</p></div>
+      <div class="hour-card"><h3>FRI – SAT</h3><p>6:00 PM – 2:00 AM</p></div>
+    </div>
+    <p class="note">☕ Coffee served daily during regular café hours.</p>
+  </section>
+
+  <!-- TWO EXPERIENCES -->
+  <section class="featured">
+    <h2>Two Experiences, One Space</h2>
+    <div class="featured-grid" style="max-width:900px;">
+
+      <!-- CAFÉ CARD -->
+      <div class="card" style="overflow:hidden;">
+        <img src="assets/cafebooth.jpg" alt="1.28 Café interior with orange booths"
+             style="height:220px; width:100%; object-fit:cover; display:block;">
+        <div class="card-body">
+          <span class="tag">Walk-in · Ground Floor</span>
+          <h3>☕ The Café</h3>
+          <p>Good coffee, good pasta, good vibes. Warm wood ceilings, orange booths,
+             and quiet corners for slow afternoons.</p>
+          <a href="menu.html" class="btn-primary" style="margin-top:0.8rem; display:inline-block;">View Café Menu</a>
+        </div>
+      </div>
+
+      <!-- COCKTAIL BAR CARD -->
+      <div class="card" style="overflow:hidden;">
+        <img src="assets/cocktailbar.jpg" alt="1.28 Cocktail Bar"
+             style="height:220px; width:100%; object-fit:cover; display:block;">
+        <div class="card-body">
+          <span class="tag">Reservation-Only · Upstairs · 18+</span>
+          <h3>🍸 The Cocktail Bar</h3>
+          <p>Limited seats. Live acoustics Fridays, DJ sets Saturdays, poetry Thursdays.
+             Reserve your slot before they fill up.</p>
+          <a href="reservation.html" class="btn-primary" style="margin-top:0.8rem; display:inline-block;">Reserve Cocktail Slot</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BESTSELLERS RIBBON -->
+  <section style="text-align:center; padding:2rem 1rem; background:var(--forest); color:var(--cream);">
+    <p style="letter-spacing:3px; font-size:0.85rem; opacity:0.8;">WHAT THE REGULARS ORDER</p>
+    <h2 style="color:var(--neon); font-weight:300; font-size:1.8rem; margin-top:0.5rem; letter-spacing:2px; font-style:italic;">
+      💚 Bestsellers &nbsp;·&nbsp; ⭐ Must-Tries
+    </h2>
+  </section>
+
+  <!-- FEATURED PICKS -->
+  <section class="featured">
+    <h2>Featured Picks</h2>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- PROMO PREVIEW -->
+  <section class="promo-preview" style="background:#F0EDE3;">
+    <h2>Upcoming Promos</h2>
+    <div class="promo-grid" id="promoGrid"></div>
+    <a href="events.html" class="btn-secondary" style="color:var(--forest); border-color:var(--forest); margin-top:1.5rem;">See All Events</a>
+  </section>
+
+  <!-- SOCIAL CTA -->
+  <section class="cta">
+    <h2>Follow the Vibe</h2>
+    <div class="social-links">
+      <a href="https://www.facebook.com/p/128-coffee-x-cocktails-61559995893863/" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/1.28coffeexcocktails" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@1.28coffeexcocktails" target="_blank">TikTok</a>
+    </div>
+    <p>📍 1409 Paz Street, Paco, Manila, Philippines, 1007</p>
+    <p>📞 0968 715 6240</p>
+  </section>
+
+  <footer>
+    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
+      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
+    </p>
+    <p>&copy; 2025 1.28 Coffee x Cocktails. All rights reserved.</p>
+    <p style="margin-top:0.5rem; opacity:0.7;">BSIS/BSIT Web Development Project — Phase 1</p>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | 1.28 Coffee x Cocktails</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cocktail-bar.html">Cocktail Bar</a></li>
+        <li><a href="admin.html" class="active">Admin</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <div class="admin-container">
+    <h1 style="text-align:center; color:var(--forest); font-weight:300; letter-spacing:2px; font-style:italic;">
+      Admin Dashboard
+    </h1>
+    <p style="text-align:center; color:#666; margin-bottom:1.5rem;">
+      Manage menu, events, reservations, and customer data.
+    </p>
+
+    <div class="admin-tabs">
+      <button class="active" onclick="switchTab(event, 'menuTab')">🍽️ Manage Menu</button>
+      <button onclick="switchTab(event, 'promoTab')">🎉 Promotions</button>
+      <button onclick="switchTab(event, 'eventTab')">📅 Events</button>
+      <button onclick="switchTab(event, 'resTab')">📋 Reservations</button>
+      <button onclick="switchTab(event, 'revTab')">💬 Reviews</button>
+      <button onclick="switchTab(event, 'msgTab')">✉️ Inquiries</button>
+      <button onclick="switchTab(event, 'spaceTab')">🏠 Event Hosting</button>
+    </div>
+
+    <div id="menuTab" class="admin-panel active">
+      <h3>Menu Items</h3>
+      <button class="btn-primary" onclick="openMenuForm()">+ Add New Item</button>
+      <table class="data-table" id="menuTable">
+        <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Featured</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="promoTab" class="admin-panel">
+      <h3>Promotions</h3>
+      <button class="btn-primary" onclick="openPromoForm()">+ Add Promotion</button>
+      <table class="data-table" id="promoTable">
+        <thead><tr><th>Title</th><th>Schedule</th><th>Description</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="eventTab" class="admin-panel">
+      <h3>Events</h3>
+      <button class="btn-primary" onclick="openEventForm()">+ Add Event</button>
+      <table class="data-table" id="eventTable">
+        <thead><tr><th>Event</th><th>Date</th><th>Time</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="resTab" class="admin-panel">
+      <h3>Cocktail Bar Reservations</h3>
+      <table class="data-table" id="resTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Date / Time</th>
+            <th>Guests</th>
+            <th>Age</th>
+            <th>Poetry</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="revTab" class="admin-panel">
+      <h3>Customer Reviews</h3>
+      <table class="data-table" id="revTable">
+        <thead><tr><th>Name</th><th>Rating</th><th>Review</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="msgTab" class="admin-panel">
+      <h3>Contact Inquiries</h3>
+      <table class="data-table" id="msgTable">
+        <thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div id="spaceTab" class="admin-panel">
+      <h3>Event Hosting & Coffee Cart Inquiries</h3>
+      <p style="color:#666; margin-bottom:1rem;">
+        Customers who want to book 1.28 for their events or rent the coffee cart.
+      </p>
+      <table class="data-table" id="spaceTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Event Type</th>
+            <th>Date</th>
+            <th>Message</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:2000; align-items:center; justify-content:center;">
+    <div style="background:white; padding:1.8rem; border-radius:14px; width:90%; max-width:520px; max-height:85vh; overflow-y:auto;">
+      <h3 id="modalTitle" style="color:var(--forest); margin-bottom:1rem;">Add Item</h3>
+      <div id="modalBody"></div>
+      <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+        <button class="btn-primary" id="modalSave" style="flex:1;">Save</button>
+        <button class="btn-secondary" style="flex:1; color:var(--forest); border-color:var(--forest);" onclick="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
+      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
+    </p>
+    <p>&copy; 2025 1.28 Coffee x Cocktails — Admin Panel</p>
+  </footer>
+
+  <script src="js/menu.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

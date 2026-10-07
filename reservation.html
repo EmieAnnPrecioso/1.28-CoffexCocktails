@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cocktail Reservation | 1.28 Coffee x Cocktails</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="cocktail-bar.html">Cocktail Bar</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html" class="active">Reserve</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <div class="form-container">
+    <h2>Cocktail Bar Reservation</h2>
+
+    <div style="background:#F0F4F0; border-left:4px solid var(--sage); padding:1rem 1.2rem;
+                border-radius:8px; margin-bottom:1.8rem; font-size:0.92rem; color:#333;">
+      <strong>⏱️ Available Slots:</strong><br>
+      Wed–Thu: 6:00 PM – 12:00 MN · Fri–Sat: 6:00 PM – 2:00 AM<br>
+      <strong>📍</strong> 1409 Paz Street, Paco, Manila · <strong>👥</strong> Limited seating
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      ✅ Reservation received! We'll confirm via email or IG within 24 hours.
+    </div>
+
+    <form id="reservationForm" novalidate>
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" placeholder="Juan Dela Cruz" />
+        <div class="error">Please enter your full name.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" placeholder="juan@email.com" />
+        <div class="error">Please enter a valid email.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" placeholder="09171234567" />
+        <div class="error">Please enter a valid phone (10–13 digits).</div>
+      </div>
+
+      <div class="form-group">
+        <label for="instagram">Instagram Handle (optional)</label>
+        <input type="text" id="instagram" placeholder="@yourhandle" />
+      </div>
+
+      <div class="form-group">
+        <label for="birthdate">Date of Birth * <small style="color:#888;">(must be 18+)</small></label>
+        <input type="date" id="birthdate" />
+        <div class="error">You must be at least 18 years old to reserve the cocktail bar.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Reservation Date * <small style="color:#888;">(Wed, Thu, Fri, or Sat only)</small></label>
+        <input type="date" id="date" />
+        <div class="error">Cocktail bar is only open Wed, Thu, Fri, and Sat.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="time">Preferred Time * <small style="color:#888;">(6:00 PM onwards)</small></label>
+        <input type="time" id="time" min="18:00" max="23:59" />
+        <div class="error">Reservations start at 6:00 PM.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="guests">Number of Guests * <small style="color:#888;">(limited seating — max 8)</small></label>
+        <select id="guests">
+          <option value="">Select...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+        <div class="error">Please select number of guests (max 8).</div>
+      </div>
+
+      <div class="form-group">
+        <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+          <input type="checkbox" id="poetry" style="width:auto;" />
+          <span>📖 I'm reserving for <strong>Spoken Word Poetry Thursday</strong> (Thursdays, 8–10 PM only)</span>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Special Requests (optional)</label>
+        <textarea id="notes" rows="3" placeholder="Birthday, seating preference, etc."></textarea>
+      </div>
+
+      <div style="background:#FFF8E1; border:1px solid #F0E0A8; padding:1.2rem; border-radius:10px; margin:1.5rem 0;">
+        <strong style="color:#8B6F00;">‼️ Please confirm the following:</strong>
+        <ul style="padding-left:1.3rem; margin-top:0.8rem; line-height:1.9; color:#333; font-size:0.93rem;">
+          <li>Everyone in my party is <strong>18+</strong> and will bring valid IDs.</li>
+          <li>No one in my party will wear a <strong>school uniform</strong>.</li>
+          <li>I understand seating is limited and my slot must be confirmed.</li>
+          <li>I will follow the café's <strong>zero-tolerance policy</strong> on discrimination and violence.</li>
+        </ul>
+        <label style="display:flex; align-items:flex-start; gap:0.6rem; margin-top:1rem; cursor:pointer; font-size:0.95rem;">
+          <input type="checkbox" id="agree" style="width:auto; margin-top:4px;" />
+          <span><strong>I have read and agree to all reminders above.</strong> *</span>
+        </label>
+        <div class="error" id="agreeError" style="display:none;">You must agree to the reminders to proceed.</div>
+      </div>
+
+      <button type="submit" class="btn-primary" style="width:100%;">Submit Reservation</button>
+    </form>
+  </div>
+
+  <footer>
+    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
+      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
+    </p>
+    <p>&copy; 2025 1.28 Coffee x Cocktails. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/reservation.js"></script>
+</body>
+</html>
