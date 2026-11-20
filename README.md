@@ -3,7 +3,7 @@
 A modern, responsive website for **1.28 Coffee x Cocktails** — a cozy neighborhood café in Paco, Manila by day, and a reservation-only cocktail bar by night.
 
 ## 🌐 Live Site
-https://yourusername.github.io/128_Coffee_x_Cocktails/
+[https://exult-z.github.io/128_Coffee_x_Cocktails/]
 
 ## 📍 About
 Neighborhood cafe | good coffee, good pasta, good vibes | ☕😌
