@@ -1,7 +1,7 @@
 # 1.28 Coffee x Cocktails
 
 ## Project Overview
-This website was developed by BSIS 3A students as part of their Web Development course. It showcases the menu, cocktail bar reservations, events, and contact information of 1.28 Coffee x Cocktails — a cozy neighborhood café in Paco, Manila by day, and a reservation-only cocktail bar by night.
+This website was developed by our group as part of our Web Development course. It showcases the menu, cocktail bar reservations, events, and contact information of 1.28 Coffee x Cocktails a cozy neighborhood café in Paco, Manila by day, and a reservation-only cocktail bar by night.
 
 ## Purpose
 To provide an online presence for 1.28 Coffee x Cocktails, promote its day-to-night café-and-bar concept, and allow customers to explore the menu and reserve cocktail bar slots directly through the site.
