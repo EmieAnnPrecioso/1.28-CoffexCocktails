@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!valid) return;
 
     try {
-      await fetch('http://localhost:3000/api/reservations', {
+      await fetch('/api/reservations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

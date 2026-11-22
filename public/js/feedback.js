@@ -8,7 +8,7 @@ async function renderReviews() {
   if (!list) return;
 
   try {
-    const response = await fetch('http://localhost:3000/api/reviews');
+    const response = await fetch('/api/reviews');
     const reviews = await response.json();
 
     list.innerHTML = `<h2 style="text-align:center; color:var(--coffee-dark); margin-bottom:1rem;">What Our Customers Say</h2>` +
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (valid) {
       try {
-        await fetch('http://localhost:3000/api/reviews', {
+        await fetch('/api/reviews', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

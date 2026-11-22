@@ -95,7 +95,7 @@
     // 1. Fetch data from the Node.js backend (SQLite)
     async function fetchMenuData() {
       try {
-        const response = await fetch('http://localhost:3000/api/menu');
+        const response = await fetch('/api/menu');
         const data = await response.json();
         return data; // The backend returns the array directly
       } catch (error) {

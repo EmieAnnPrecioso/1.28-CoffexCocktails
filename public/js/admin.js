@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = '/api';
 
 function switchTab(e, tabId) {
   document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));

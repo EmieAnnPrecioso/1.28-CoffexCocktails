@@ -93,8 +93,8 @@
 
       try {
         const [eventsRes, promosRes] = await Promise.all([
-          fetch('http://localhost:3000/api/events'),
-          fetch('http://localhost:3000/api/promotions')
+          fetch('/api/events'),
+          fetch('/api/promotions')
         ]);
         const events = await eventsRes.json();
         const promos = await promosRes.json();
