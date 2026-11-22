@@ -165,3 +165,8 @@ app.delete('/api/space_inquiries/:id', (req, res) => db.run(`DELETE FROM space_i
 // --- START SERVER ---
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.post('/api/reviews', (req, res) => {
+    const { name, rating, text, date } = req.body;
+    db.run(`INSERT INTO reviews (name, rating, text, date) VALUES (?, ?, ?, ?)`,
+        [name, rating, text, date], function(err) { res.json({ id: this.lastID }); });
+});
