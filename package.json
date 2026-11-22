@@ -2,10 +2,9 @@
   "name": "128_coffee_x_cocktails",
   "version": "1.0.0",
   "description": "This website was developed by our group as part of our Web Development course. It showcases the menu, cocktail bar reservations, events, and contact information of 1.28 Coffee x Cocktails a cozy neighborhood café in Paco, Manila by day, and a reservation-only cocktail bar by night.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-  "start": "node server.js"
-}
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
