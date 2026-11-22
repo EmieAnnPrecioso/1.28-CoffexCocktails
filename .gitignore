@@ -7,3 +7,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+node_modules/
+optimum_project/

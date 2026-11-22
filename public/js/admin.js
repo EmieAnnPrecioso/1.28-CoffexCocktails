@@ -20,7 +20,10 @@ async function renderMenuTable() {
       <tr>
         <td>${item.name}</td><td>${item.category}</td><td>₱${item.price}</td>
         <td>${item.featured ? '✅' : '—'}</td>
-        <td><button onclick="deleteMenuItem(${item.id})" style="background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button></td>
+        <td>
+          <button class="edit" onclick="editMenuItem(${item.id})">Edit</button>
+          <button onclick="deleteMenuItem(${item.id})" style="background:#e74c3c; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">Delete</button>
+        </td>
       </tr>
     `).join('');
   } catch (err) { console.error(err); }
@@ -30,28 +33,46 @@ async function deleteMenuItem(id) {
   await fetch(`${API_URL}/menu/${id}`, { method: 'DELETE' });
   renderMenuTable();
 }
-function openMenuForm() {
-  document.getElementById('modalTitle').textContent = 'Add Menu Item';
+async function editMenuItem(id) {
+  try {
+    const res = await fetch(`${API_URL}/menu`);
+    const items = await res.json();
+    const item = items.find(menuItem => menuItem.id === id);
+    if (item) openMenuForm(item);
+  } catch (err) { console.error(err); }
+}
+let editingMenuId = null;
+function openMenuForm(item = null) {
+  editingMenuId = item ? item.id : null;
+  document.getElementById('modalTitle').textContent = item ? 'Edit Menu Item' : 'Add Menu Item';
   document.getElementById('modalBody').innerHTML = `
-    <div class="form-group"><label>Name</label><input id="mName" /></div>
-    <div class="form-group"><label>Category</label><input id="mCategory" /></div>
-    <div class="form-group"><label>Price (₱)</label><input id="mPrice" type="number" /></div>
-    <div class="form-group"><label>Description</label><textarea id="mDesc"></textarea></div>
-    <div class="form-group"><label>Image filename</label><input id="mImage" value="assets/placeholder.jpg" /></div>
-    <div class="form-group"><label><input type="checkbox" id="mFeatured" /> Featured item</label></div>
-    <div class="form-group"><label>Tag</label><input id="mTag" /></div>
+    <div class="form-group"><label>Name</label><input id="mName" value="${item?.name || ''}" /></div>
+    <div class="form-group"><label>Category</label><input id="mCategory" value="${item?.category || ''}" /></div>
+    <div class="form-group"><label>Price (₱)</label><input id="mPrice" type="number" value="${item?.price || ''}" /></div>
+    <div class="form-group"><label>Description</label><textarea id="mDesc">${item?.description || ''}</textarea></div>
+    <div class="form-group"><label>Image filename</label><input id="mImage" value="${item?.image || 'assets/placeholder.jpg'}" /></div>
+    <div class="form-group"><label><input type="checkbox" id="mFeatured" ${item?.featured ? 'checked' : ''} /> Featured item</label></div>
+    <div class="form-group"><label>Tag</label><input id="mTag" value="${item?.tag || ''}" /></div>
   `;
   document.getElementById('modalSave').onclick = async () => {
+    const name = document.getElementById('mName').value.trim();
+    if (!name) return alert('Name is required.');
+
     const data = {
-      name: document.getElementById('mName').value,
-      category: document.getElementById('mCategory').value,
+      name,
+      category: document.getElementById('mCategory').value.trim(),
       price: parseInt(document.getElementById('mPrice').value) || 0,
-      description: document.getElementById('mDesc').value,
-      image: document.getElementById('mImage').value,
+      description: document.getElementById('mDesc').value.trim(),
+      image: document.getElementById('mImage').value.trim(),
       featured: document.getElementById('mFeatured').checked,
-      tag: document.getElementById('mTag').value
+      tag: document.getElementById('mTag').value.trim()
     };
-    await fetch(`${API_URL}/menu`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    const url = editingMenuId ? `${API_URL}/menu/${editingMenuId}` : `${API_URL}/menu`;
+    await fetch(url, {
+      method: editingMenuId ? 'PUT' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
     closeModal(); renderMenuTable();
   };
   document.getElementById('modal').style.display = 'flex';

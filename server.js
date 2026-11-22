@@ -1,12 +1,14 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-const db = new sqlite3.Database('./128_coffee.db', (err) => {
+const db = new sqlite3.Database(path.join(__dirname, '128_coffee.db'), (err) => {
     if (err) console.error(err.message);
     else console.log('Connected to 1.28 Coffee SQLite database.');
 });
@@ -23,7 +25,7 @@ db.serialize(() => {
 
     // Seed Menu
     db.get(`SELECT COUNT(*) as count FROM menu`, (err, row) => {
-        if (row.count === 0) {
+        if (row && row.count === 0) {
             const menu = [
                 ['Chicken Teriyaki', 'Rice Bowls', 205, 'Juicy chicken breast fillet over hot rice, glazed with sweet sesame soy sauce.', 'assets/rice1.jpg', 0, '⭐ Must Try'],
                 ['Pepper Beef Mushroom Bowl', 'Rice Bowls', 205, 'Beef strips with pepper and mushroom in our special super secret gravy.', 'assets/rice2.jpg', 1, '💚 Bestseller'],
@@ -94,61 +96,72 @@ app.post('/api/login', (req, res) => {
 });
 
 // --- MENU ---
-app.get('/api/menu', (req, res) => db.all(`SELECT * FROM menu`, [], (err, rows) => res.json(rows)));
+app.get('/api/menu', (req, res) => db.all(`SELECT * FROM menu`, [], (err, rows) => res.json(rows || [])));
 app.post('/api/menu', (req, res) => {
     const { name, category, price, description, image, featured, tag } = req.body;
-    db.run(`INSERT INTO menu (name, category, price, description, image, featured, tag) VALUES (?, ?, ?, ?, ?, ?, ?)`, 
+    db.run(`INSERT INTO menu (name, category, price, description, image, featured, tag) VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [name, category, price, description, image, featured ? 1 : 0, tag], function(err) { res.json({ id: this.lastID }); });
+});
+app.put('/api/menu/:id', (req, res) => {
+    const { name, category, price, description, image, featured, tag } = req.body;
+    db.run(`UPDATE menu SET name = ?, category = ?, price = ?, description = ?, image = ?, featured = ?, tag = ? WHERE id = ?`,
+        [name, category, price, description, image, featured ? 1 : 0, tag, req.params.id],
+        function(err) {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ updated: this.changes > 0 });
+        });
 });
 app.delete('/api/menu/:id', (req, res) => db.run(`DELETE FROM menu WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
 // --- PROMOTIONS ---
-app.get('/api/promotions', (req, res) => db.all(`SELECT * FROM promotions`, [], (err, rows) => res.json(rows)));
+app.get('/api/promotions', (req, res) => db.all(`SELECT * FROM promotions`, [], (err, rows) => res.json(rows || [])));
 app.post('/api/promotions', (req, res) => {
     const { title, schedule, description } = req.body;
-    db.run(`INSERT INTO promotions (title, schedule, description) VALUES (?, ?, ?)`, 
+    db.run(`INSERT INTO promotions (title, schedule, description) VALUES (?, ?, ?)`,
         [title, schedule, description], function(err) { res.json({ id: this.lastID }); });
 });
 app.delete('/api/promotions/:id', (req, res) => db.run(`DELETE FROM promotions WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
 // --- EVENTS ---
-app.get('/api/events', (req, res) => db.all(`SELECT * FROM events`, [], (err, rows) => res.json(rows)));
+app.get('/api/events', (req, res) => db.all(`SELECT * FROM events`, [], (err, rows) => res.json(rows || [])));
 app.post('/api/events', (req, res) => {
     const { title, event_date, event_time } = req.body;
-    db.run(`INSERT INTO events (title, event_date, event_time) VALUES (?, ?, ?)`, 
+    db.run(`INSERT INTO events (title, event_date, event_time) VALUES (?, ?, ?)`,
         [title, event_date, event_time], function(err) { res.json({ id: this.lastID }); });
 });
 app.delete('/api/events/:id', (req, res) => db.run(`DELETE FROM events WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
 // --- REVIEWS ---
-app.get('/api/reviews', (req, res) => db.all(`SELECT * FROM reviews`, [], (err, rows) => res.json(rows)));
+app.get('/api/reviews', (req, res) => db.all(`SELECT * FROM reviews`, [], (err, rows) => res.json(rows || [])));
 app.delete('/api/reviews/:id', (req, res) => db.run(`DELETE FROM reviews WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
 // --- RESERVATIONS ---
-app.get('/api/reservations', (req, res) => db.all(`SELECT * FROM reservations`, [], (err, rows) => res.json(rows)));
+app.get('/api/reservations', (req, res) => db.all(`SELECT * FROM reservations`, [], (err, rows) => res.json(rows || [])));
 app.post('/api/reservations', (req, res) => {
     const { name, email, phone, instagram, birthdate, res_date, res_time, guests, poetry, notes } = req.body;
-    db.run(`INSERT INTO reservations (name, email, phone, instagram, birthdate, res_date, res_time, guests, poetry, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+    db.run(`INSERT INTO reservations (name, email, phone, instagram, birthdate, res_date, res_time, guests, poetry, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [name, email, phone, instagram, birthdate, res_date, res_time, guests, poetry ? 1 : 0, notes], function(err) { res.json({ id: this.lastID }); });
 });
 app.delete('/api/reservations/:id', (req, res) => db.run(`DELETE FROM reservations WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
 // --- INQUIRIES ---
-app.get('/api/inquiries', (req, res) => db.all(`SELECT * FROM inquiries`, [], (err, rows) => res.json(rows)));
+app.get('/api/inquiries', (req, res) => db.all(`SELECT * FROM inquiries`, [], (err, rows) => res.json(rows || [])));
 app.post('/api/inquiries', (req, res) => {
     const { name, email, message } = req.body;
-    db.run(`INSERT INTO inquiries (name, email, message) VALUES (?, ?, ?)`, 
+    db.run(`INSERT INTO inquiries (name, email, message) VALUES (?, ?, ?)`,
         [name, email, message], function(err) { res.json({ id: this.lastID }); });
 });
 app.delete('/api/inquiries/:id', (req, res) => db.run(`DELETE FROM inquiries WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
 // --- SPACE INQUIRIES (Event Hosting) ---
-app.get('/api/space_inquiries', (req, res) => db.all(`SELECT * FROM space_inquiries`, [], (err, rows) => res.json(rows)));
+app.get('/api/space_inquiries', (req, res) => db.all(`SELECT * FROM space_inquiries`, [], (err, rows) => res.json(rows || [])));
 app.post('/api/space_inquiries', (req, res) => {
     const { name, email, phone, event_type, event_date, message } = req.body;
-    db.run(`INSERT INTO space_inquiries (name, email, phone, event_type, event_date, message) VALUES (?, ?, ?, ?, ?, ?)`, 
+    db.run(`INSERT INTO space_inquiries (name, email, phone, event_type, event_date, message) VALUES (?, ?, ?, ?, ?, ?)`,
         [name, email, phone, event_type, event_date, message], function(err) { res.json({ id: this.lastID }); });
 });
 app.delete('/api/space_inquiries/:id', (req, res) => db.run(`DELETE FROM space_inquiries WHERE id = ?`, req.params.id, function() { res.json({ deleted: true }); }));
 
-app.listen(3000, () => console.log('Backend running at http://localhost:3000'));
+// --- START SERVER ---
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
