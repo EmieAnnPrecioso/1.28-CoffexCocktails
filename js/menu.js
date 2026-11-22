@@ -3,16 +3,16 @@
    Complete menu: food + drinks
    ============================ */
 
-const MENU_VERSION = 4;
+const MENU_VERSION = 5;
 
 const DEFAULT_MENU = [
   // ============ RICE BOWLS ============
   { id: 1, name: 'Chicken Teriyaki', category: 'Rice Bowls', price: 205,
     description: 'Juicy chicken breast fillet over hot rice, glazed with sweet sesame soy sauce.',
-    image: 'assets/rice1.jpg', featured: false, tag: '⭐ Must Try' },
+    image: 'assets/rice1.jpg', featured: false, tag: 'Must Try' },
   { id: 2, name: 'Pepper Beef Mushroom Bowl', category: 'Rice Bowls', price: 205,
     description: 'Beef strips with pepper and mushroom in our special super secret gravy.',
-    image: 'assets/rice2.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/rice2.jpg', featured: true, tag: 'Bestseller' },
   { id: 3, name: 'Pork Tonkatsu Bowl', category: 'Rice Bowls', price: 205,
     description: 'Half-sliced pork fillet, deep-fried golden brown with egg and savory sauce.',
     image: 'assets/rice3.jpg', featured: false, tag: '' },
@@ -23,7 +23,7 @@ const DEFAULT_MENU = [
   // ============ NIBBLERS ============
   { id: 5, name: 'Jalapeño Cheese Stix', category: 'Nibblers', price: 260,
     description: 'Crispy on the outside, melty and spicy on the inside.',
-    image: 'assets/nibbler1.jpg', featured: false, tag: '⭐ Must Try' },
+    image: 'assets/nibbler1.jpg', featured: false, tag: 'Must Try' },
   { id: 6, name: 'Big Pile of Nachos', category: 'Nibblers', price: 330,
     description: 'A generous pile of nachos perfect for sharing.',
     image: 'assets/nibbler2.jpg', featured: false, tag: '' },
@@ -34,8 +34,8 @@ const DEFAULT_MENU = [
     description: 'Comes with your choice of garlic mayo or cheese dip.',
     image: 'assets/nibbler4.jpg', featured: false, tag: '' },
   { id: 9, name: 'Plate of Wings (12 pcs)', category: 'Nibblers', price: 385,
-    description: 'Choose: Garlic Parmesan (⭐), Uber Cheese, Buffalo, or Honey Ginger Sriracha (💚).',
-    image: 'assets/nibbler5.jpg', featured: true, tag: '💚 Bestseller' },
+    description: 'Choose: Garlic Parmesan (Must Try), Uber Cheese, Buffalo, or Honey Ginger Sriracha (Bestseller).',
+    image: 'assets/nibbler5.jpg', featured: true, tag: 'Bestseller' },
   { id: 10, name: 'Chicken Poppers', category: 'Nibblers', price: 300,
     description: 'With 3 dips: Garlic Mayo, Creamy Sriracha, Lemon Butter Gravy.',
     image: 'assets/nibbler6.jpg', featured: false, tag: '' },
@@ -46,10 +46,10 @@ const DEFAULT_MENU = [
     image: 'assets/pasta1.jpg', featured: false, tag: '' },
   { id: 12, name: 'Chicken Alfredo', category: 'Pasta', price: 230,
     description: 'Creamy alfredo with tender chicken.',
-    image: 'assets/pasta2.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/pasta2.jpg', featured: true, tag: 'Bestseller' },
   { id: 13, name: '1.28 Spaghetti', category: 'Pasta', price: 220,
     description: 'Our signature house spaghetti.',
-    image: 'assets/pasta3.jpg', featured: true, tag: '⭐ Must Try' },
+    image: 'assets/pasta3.jpg', featured: true, tag: 'Must Try' },
   { id: 14, name: 'Pasta with Sardines', category: 'Pasta', price: 250,
     description: 'Pasta tossed with sardines — a Filipino favorite.',
     image: 'assets/pasta4.jpg', featured: false, tag: '' },
@@ -58,7 +58,7 @@ const DEFAULT_MENU = [
     image: 'assets/pasta5.jpg', featured: false, tag: '' },
   { id: 16, name: 'Chicken Marinara', category: 'Pasta', price: 240,
     description: 'Classic marinara sauce with chicken.',
-    image: 'assets/pasta6.jpg', featured: false, tag: '⭐ Must Try' },
+    image: 'assets/pasta6.jpg', featured: false, tag: 'Must Try' },
 
   // ============ ALL-DAY BREAKFAST ============
   { id: 17, name: 'Tocilog', category: 'All-Day Breakfast', price: 149,
@@ -66,7 +66,7 @@ const DEFAULT_MENU = [
     image: 'assets/breakfast1.jpg', featured: false, tag: '' },
   { id: 18, name: 'Tapsilog', category: 'All-Day Breakfast', price: 149,
     description: 'Tapa, sinangag, at itlog.',
-    image: 'assets/breakfast2.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/breakfast2.jpg', featured: true, tag: 'Bestseller' },
   { id: 19, name: 'Hotsilog', category: 'All-Day Breakfast', price: 129,
     description: 'Hotdog, sinangag, at itlog.',
     image: 'assets/breakfast3.jpg', featured: false, tag: '' },
@@ -74,7 +74,7 @@ const DEFAULT_MENU = [
   // ============ TOASTIES ============
   { id: 20, name: 'Signature BECK Toastie', category: 'Toasties', price: 250,
     description: 'Bacon, egg, cheese, and keso — the one that started it all.',
-    image: 'assets/toastie1.jpg', featured: true, tag: '⭐ Must Try' },
+    image: 'assets/toastie1.jpg', featured: true, tag: 'Must Try' },
   { id: 21, name: 'Chicken Toastie', category: 'Toasties', price: 220,
     description: 'Warm toasted sandwich filled with chicken.',
     image: 'assets/toastie2.jpg', featured: false, tag: '' },
@@ -118,13 +118,13 @@ const DEFAULT_MENU = [
     image: 'assets/drink7.jpg', featured: false, tag: '' },
   { id: 35, name: 'Spanish Latte', category: 'Espresso Bar', price: 140,
     description: 'Hot (8oz) ₱140 · Iced (16oz) ₱150',
-    image: 'assets/drink8.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/drink8.jpg', featured: true, tag: 'Bestseller' },
   { id: 36, name: 'Hazelnut', category: 'Espresso Bar', price: 120,
     description: 'Hot (8oz) ₱120 · Iced (16oz) ₱130',
     image: 'assets/drink9.jpg', featured: false, tag: '' },
   { id: 37, name: 'Salted Caramel Latte', category: 'Espresso Bar', price: 120,
     description: 'Hot (8oz) ₱120 · Iced (16oz) ₱130',
-    image: 'assets/drink10.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/drink10.jpg', featured: true, tag: 'Bestseller' },
   { id: 38, name: 'Cappuccino', category: 'Espresso Bar', price: 110,
     description: 'Hot (8oz) ₱110',
     image: 'assets/drink11.jpg', featured: false, tag: '' },
@@ -147,7 +147,7 @@ const DEFAULT_MENU = [
     image: 'assets/drink16.jpg', featured: false, tag: '' },
   { id: 44, name: 'Vanilla Cold Brew', category: 'Brewed', price: 120,
     description: 'Hot (8oz) or Iced (16oz) — ₱120',
-    image: 'assets/drink17.jpg', featured: true, tag: '⭐ Must Try' },
+    image: 'assets/drink17.jpg', featured: true, tag: 'Must Try' },
 
   // ============ NON-COFFEE & TEA ============
   { id: 45, name: 'Milo Monster', category: 'Non-Coffee & Tea', price: 110,
@@ -155,10 +155,10 @@ const DEFAULT_MENU = [
     image: 'assets/drink18.jpg', featured: false, tag: '' },
   { id: 46, name: '1.28 Fruit Punch', category: 'Non-Coffee & Tea', price: 130,
     description: 'House-blended refreshing fruit punch.',
-    image: 'assets/drink19.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/drink19.jpg', featured: true, tag: 'Bestseller' },
   { id: 47, name: "JD's House Blend Tea", category: 'Non-Coffee & Tea', price: 140,
     description: 'Signature house blend tea.',
-    image: 'assets/drink20.jpg', featured: true, tag: '💚 Bestseller' },
+    image: 'assets/drink20.jpg', featured: true, tag: 'Bestseller' },
   { id: 48, name: 'Premium Creamy Matcha Latte', category: 'Non-Coffee & Tea', price: 180,
     description: 'Creamy, premium grade matcha latte.',
     image: 'assets/drink21.jpg', featured: false, tag: '' },
@@ -178,7 +178,7 @@ const DEFAULT_MENU = [
   // ============ BARISTA BLEND ============
   { id: 53, name: 'Mocha Lava', category: 'Barista Blend', price: 180,
     description: 'Coffee-based signature drink with rich chocolate lava.',
-    image: 'assets/drink26.jpg', featured: true, tag: '⭐ Must Try' },
+    image: 'assets/drink26.jpg', featured: true, tag: 'Must Try' },
 ];
 
 function getMenuItems() {
@@ -208,7 +208,7 @@ function renderMenu(items) {
 
   grid.innerHTML = items.map(item => `
     <div class="card">
-      <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'" />
+      <img src="${item.image}" alt="${item.name}" onerror="fallbackImg(this,'${item.category}')" />
       <div class="card-body">
         ${item.tag ? `<span class="tag">${item.tag}</span>` : ''}
         <h3>${item.name}</h3>

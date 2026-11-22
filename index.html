@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.28 Coffee x Cocktails | Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -21,6 +24,7 @@
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="reservation.html">Reserve</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="feedback.html" class="nav-reviews">Reviews</a></li>
         <li><a href="admin.html">Admin</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -28,112 +32,122 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <img src="assets/logo.jpg" alt="1.28 Coffee x Cocktails"
-           style="max-width: 300px; width: 65%; margin: 0 auto 1.8rem; display: block;
-                  background: var(--cream); padding: 1.2rem; border-radius: 16px;
-                  box-shadow: 0 10px 40px rgba(0,0,0,0.3);" />
-      <p style="font-size:1.15rem; letter-spacing:0.5px; max-width:620px; margin:0 auto 2rem;
-                opacity:0.95; font-weight:400; line-height:1.7;">
-        Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
-      </p>
-      <a href="reservation.html" class="btn-primary">Reserve a Table</a>
-      <a href="menu.html" class="btn-secondary">View Menu</a>
+  <section class="hero-split">
+    <span class="sun" aria-hidden="true"></span><span class="moon" aria-hidden="true"></span>
+    <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span>
+    <span class="float f1" aria-hidden="true">☕</span><span class="float f2" aria-hidden="true">🍝</span><span class="float f3" aria-hidden="true">🍸</span><span class="float f4" aria-hidden="true">✨</span>
+    <div class="hero-text">
+      <span class="script tagline">good coffee &middot; good pasta &middot; good vibes</span>
+      <h1><span class="hl-day">Coffee</span> by day,<br><span class="hl-night">cocktails</span> by night.</h1>
+      <p>A cozy neighborhood caf&eacute; in Paco, Manila &mdash; and a reservation-only cocktail bar upstairs once the sun goes down.</p>
+      <div class="hero-btns">
+        <a href="menu.html" class="btn-primary">View Menu</a>
+        <a href="contact.html" class="btn-outline">Find Us</a>
+      </div>
+      <div class="open-badge" id="openBadge">Checking if we&rsquo;re open&hellip;</div>
+    </div>
+    <div class="hero-art">
+      <img class="hero-photo" src="assets/storefront.jpg" alt="1.28 Coffee x Cocktails storefront at 1409 Paz Street">
+      <span class="sticker st1">&#9728;&#65039; Caf&eacute; 10AM</span>
+      <span class="sticker st2">&#127769; Bar till 2AM</span>
     </div>
   </section>
 
-  <!-- OPERATING HOURS -->
-  <section class="hours-banner">
-    <h2>🕒 Operating Hours</h2>
-    <div class="hours-grid">
-      <div class="hour-card"><h3>MON – WED</h3><p>10:00 AM – 10:00 PM</p></div>
-      <div class="hour-card"><h3>THU – FRI</h3><p>12:00 PM – 12:00 AM</p></div>
-      <div class="hour-card"><h3>SATURDAY</h3><p>12:00 PM – 11:00 PM</p></div>
-      <div class="hour-card"><h3>SUNDAY</h3><p>Closed</p></div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div><span>&#9749; GOOD COFFEE</span><span>&#127837; GOOD PASTA</span><span>&#10024; GOOD VIBES</span><span>&#127864; COCKTAILS AFTER DARK</span><span>&#127926; LIVE ACOUSTICS</span><span>&#127911; MELLOW DJ SETS</span></div>
+      <div><span>&#9749; GOOD COFFEE</span><span>&#127837; GOOD PASTA</span><span>&#10024; GOOD VIBES</span><span>&#127864; COCKTAILS AFTER DARK</span><span>&#127926; LIVE ACOUSTICS</span><span>&#127911; MELLOW DJ SETS</span></div>
     </div>
+  </div>
 
-    <h2 style="margin-top:3rem;">🍸 Cocktail Hours</h2>
-    <div class="hours-grid">
-      <div class="hour-card"><h3>WED – THU</h3><p>6:00 PM – 12:00 MN</p></div>
-      <div class="hour-card"><h3>FRI – SAT</h3><p>6:00 PM – 2:00 AM</p></div>
-    </div>
-    <p class="note">☕ Coffee served daily during regular café hours.</p>
-  </section>
-
-  <!-- TWO EXPERIENCES -->
-  <section class="featured">
-    <h2>Two Experiences, One Space</h2>
-    <div class="featured-grid" style="max-width:900px;">
-
-      <!-- CAFÉ CARD -->
-      <div class="card" style="overflow:hidden;">
-        <img src="assets/cafebooth.jpg" alt="1.28 Café interior with orange booths"
-             style="height:220px; width:100%; object-fit:cover; display:block;">
-        <div class="card-body">
-          <span class="tag">Walk-in · Ground Floor</span>
-          <h3>☕ The Café</h3>
-          <p>Good coffee, good pasta, good vibes. Warm wood ceilings, orange booths,
-             and quiet corners for slow afternoons.</p>
-          <a href="menu.html" class="btn-primary" style="margin-top:0.8rem; display:inline-block;">View Café Menu</a>
+  <!-- ONE SPACE, TWO MOODS -->
+  <section class="home-section">
+    <h2 class="reveal">One Space, Two Moods</h2>
+    <div class="moods reveal">
+      <div class="mood day">
+        <img src="assets/cafebooth.jpg" alt="Caf&eacute; booths and wood ceiling">
+        <div class="mood-body">
+          <span class="label">DAYTIME</span>
+          <h3>Coffee &amp; study sessions</h3>
+          <p>Warm wood ceilings, orange booths, and quiet corners for slow afternoons.</p>
+          <a href="menu.html">See the coffee menu &gt;</a>
         </div>
       </div>
-
-      <!-- COCKTAIL BAR CARD -->
-      <div class="card" style="overflow:hidden;">
-        <img src="assets/cocktailbar.jpg" alt="1.28 Cocktail Bar"
-             style="height:220px; width:100%; object-fit:cover; display:block;">
-        <div class="card-body">
-          <span class="tag">Reservation-Only · Upstairs · 18+</span>
-          <h3>🍸 The Cocktail Bar</h3>
-          <p>Limited seats. Live acoustics Fridays, DJ sets Saturdays, poetry Thursdays.
-             Reserve your slot before they fill up.</p>
-          <a href="reservation.html" class="btn-primary" style="margin-top:0.8rem; display:inline-block;">Reserve Cocktail Slot</a>
+      <div class="mood night">
+        <img src="assets/cocktailbar.jpg" alt="The 1.28 cocktail bar">
+        <div class="mood-body">
+          <span class="label">EVENING &middot; 18+</span>
+          <h3>Cocktails &amp; good company</h3>
+          <p>Reservation-only. Live acoustics Fridays, DJ sets Saturdays, poetry Thursdays.</p>
+          <a href="cocktail-bar.html">See the cocktail menu &gt;</a>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- BESTSELLERS RIBBON -->
-  <section style="text-align:center; padding:2rem 1rem; background:var(--forest); color:var(--cream);">
-    <p style="letter-spacing:3px; font-size:0.85rem; opacity:0.8;">WHAT THE REGULARS ORDER</p>
-    <h2 style="color:var(--neon); font-weight:300; font-size:1.8rem; margin-top:0.5rem; letter-spacing:2px; font-style:italic;">
-      💚 Bestsellers &nbsp;·&nbsp; ⭐ Must-Tries
-    </h2>
+  <!-- FEATURED DRINKS & FOOD -->
+  <section class="home-section home-featured">
+    <h2 class="reveal">Featured Drinks &amp; Food</h2>
+    <p class="script sub reveal">what the regulars keep ordering</p>
+    <div class="featured-grid reveal" id="featuredGrid"></div>
+    <div class="center-btn"><a href="menu.html" class="btn-outline">View Full Menu</a></div>
   </section>
 
-  <!-- FEATURED PICKS -->
-  <section class="featured">
-    <h2>Featured Picks</h2>
-    <div class="featured-grid" id="featuredGrid"></div>
-  </section>
-
-  <!-- PROMO PREVIEW -->
-  <section class="promo-preview" style="background:#F0EDE3;">
-    <h2>Upcoming Promos</h2>
-    <div class="promo-grid" id="promoGrid"></div>
-    <a href="events.html" class="btn-secondary" style="color:var(--forest); border-color:var(--forest); margin-top:1.5rem;">See All Events</a>
-  </section>
-
-  <!-- SOCIAL CTA -->
-  <section class="cta">
-    <h2>Follow the Vibe</h2>
-    <div class="social-links">
-      <a href="https://www.facebook.com/p/128-coffee-x-cocktails-61559995893863/" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/1.28coffeexcocktails" target="_blank">Instagram</a>
-      <a href="https://www.tiktok.com/@1.28coffeexcocktails" target="_blank">TikTok</a>
+  <!-- PROMO BAND -->
+  <section class="promo-band reveal">
+    <div class="promo-left">
+      <span class="promo-emoji" aria-hidden="true">🎉</span>
+      <div id="promoText"></div>
     </div>
-    <p>📍 1409 Paz Street, Paco, Manila, Philippines, 1007</p>
-    <p>📞 0968 715 6240</p>
+    <a href="events.html" class="btn-primary btn-navy">See Promotions</a>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="home-section">
+    <h2 class="reveal">Gallery</h2>
+    <p class="script sub reveal">snapshots from the 1.28 crew</p>
+    <div class="gallery-strip reveal">
+      <figure><img src="assets/greeninterior.jpg" alt="Green wall interior"><figcaption>the green wall</figcaption></figure>
+      <figure><img src="assets/greencounter.jpg" alt="Counter with We Are Open sign"><figcaption>we&rsquo;re open!</figcaption></figure>
+      <figure><img src="assets/cocktailbar.jpg" alt="Cocktail bar in action"><figcaption>cheers &#127864;</figcaption></figure>
+      <figure><img src="assets/cafebooth.jpg" alt="Caf&eacute; booths and wood ceiling"><figcaption>cozy booths</figcaption></figure>
+      <figure><img src="assets/storefront.jpg" alt="Storefront at 1409 Paz Street"><figcaption>find us here</figcaption></figure>
+    </div>
+    <a href="gallery.html" class="see-more">See more photos &gt;</a>
+  </section>
+
+  <!-- VISIT US -->
+  <section class="visit">
+    <div class="reveal">
+      <h2>Visit Us</h2>
+      <ul>
+        <li><span class="ico">📍</span><div><strong>Address</strong>1409 Paz Street, Paco, Manila, Philippines, 1007</div></li>
+        <li><span class="ico">🕒</span><div><strong>Opening hours</strong>
+          Mon&ndash;Wed 10AM&ndash;10PM &middot; Thu&ndash;Fri 12PM&ndash;12AM<br>
+          Sat 12PM&ndash;11PM &middot; Sun Closed<br>
+          Cocktail bar (reservation-only): Wed&ndash;Thu 6PM&ndash;12MN &middot; Fri&ndash;Sat 6PM&ndash;2AM</div></li>
+        <li><span class="ico">📞</span><div><strong>Contact &amp; social links</strong>
+          0968 715 6240<br>
+          <a href="https://www.facebook.com/p/128-coffee-x-cocktails-61559995893863/" target="_blank">Facebook</a> &middot;
+          <a href="https://www.instagram.com/1.28coffeexcocktails" target="_blank">Instagram</a> &middot;
+          <a href="https://www.tiktok.com/@1.28coffeexcocktails" target="_blank">TikTok</a></div></li>
+      </ul>
+    </div>
+    <iframe class="reveal" src="https://www.google.com/maps?q=1409+Paz+Street,+Paco,+Manila&amp;output=embed" title="Map to 1.28 Coffee x Cocktails" allowfullscreen loading="lazy"></iframe>
   </section>
 
   <footer>
-    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
-      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
-    </p>
-    <p>&copy; 2025 1.28 Coffee x Cocktails. All rights reserved.</p>
-    <p style="margin-top:0.5rem; opacity:0.7;">BSIS/BSIT Web Development Project — Phase 1</p>
+    <div class="footer-main">
+      <span class="footer-brand">1.28 Coffee x Cocktails</span>
+      <nav class="footer-links">
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="cocktail-bar.html">Cocktail Bar</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="reservation.html">Reserve</a><a href="contact.html">Contact</a><a href="feedback.html">Reviews</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/p/128-coffee-x-cocktails-61559995893863/" target="_blank" aria-label="Facebook">f</a><a href="https://www.instagram.com/1.28coffeexcocktails" target="_blank" aria-label="Instagram">ig</a><a href="https://www.tiktok.com/@1.28coffeexcocktails" target="_blank" aria-label="TikTok">tt</a>
+      </div>
+    </div>
+    <p class="footer-bottom">1409 Paz Street, Paco, Manila &nbsp;|&nbsp; Mon&ndash;Sat &middot; Sun closed &nbsp;|&nbsp; &copy; 2026 1.28 Coffee x Cocktails</p>
+    <p class="footer-bottom">BSIS/BSIT Web Development Project &mdash; Phase 1 &nbsp;&middot;&nbsp; <a class="staff-link" href="admin.html">Staff login</a></p>
   </footer>
 
   <script src="js/menu.js"></script>

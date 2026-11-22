@@ -1,37 +1,28 @@
 /* ============================
    CUSTOMER FEEDBACK SYSTEM
+   Now uses Node.js + SQLite
    ============================ */
 
-function getReviews() {
-  const stored = localStorage.getItem('reviews');
-  if (stored) return JSON.parse(stored);
-  // Default seeded reviews
-  const defaults = [
-    { id: 1, name: 'Maria S.', rating: 5, text: 'The espresso martini is a must-try! Cozy place and friendly staff.', date: '2025-01-15' },
-    { id: 2, name: 'Carlo R.', rating: 5, text: 'Best cocktails in town. Their Friday acoustic nights are amazing.', date: '2025-01-20' },
-    { id: 3, name: 'Anna L.', rating: 4, text: 'Great coffee, great vibes. Perfect study spot during the day.', date: '2025-02-01' }
-  ];
-  localStorage.setItem('reviews', JSON.stringify(defaults));
-  return defaults;
-}
-
-function saveReviews(reviews) {
-  localStorage.setItem('reviews', JSON.stringify(reviews));
-}
-
-function renderReviews() {
+async function renderReviews() {
   const list = document.getElementById('reviewsList');
   if (!list) return;
-  const reviews = getReviews();
 
-  list.innerHTML = `<h2 style="text-align:center; color:var(--coffee-dark); margin-bottom:1rem;">What Our Customers Say</h2>` +
-    reviews.slice().reverse().map(r => `
-      <div class="review-card">
-        <div class="stars">${'⭐'.repeat(r.rating)}</div>
-        <p>${r.text}</p>
-        <p class="reviewer">— ${r.name} <small style="color:#999;">(${r.date})</small></p>
-      </div>
-    `).join('');
+  try {
+    const response = await fetch('http://localhost:3000/api/reviews');
+    const reviews = await response.json();
+
+    list.innerHTML = `<h2 style="text-align:center; color:var(--coffee-dark); margin-bottom:1rem;">What Our Customers Say</h2>` +
+      reviews.reverse().map(r => `
+        <div class="review-card">
+          <div class="stars">${'⭐'.repeat(r.rating)}</div>
+          <p>${r.text}</p>
+          <p class="reviewer">— ${r.name} <small style="color:#999;">(${r.date})</small></p>
+        </div>
+      `).join('');
+  } catch (error) {
+    console.error("Error loading reviews:", error);
+    list.innerHTML = '<p style="text-align:center; color:red;">Could not load reviews. Is the server running?</p>';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('feedbackForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     let valid = true;
 
@@ -55,19 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (text.value.trim().length < 10) { text.parentElement.classList.add('invalid'); valid = false; }
 
     if (valid) {
-      const reviews = getReviews();
-      reviews.push({
-        id: Date.now(),
-        name: name.value.trim(),
-        rating: parseInt(rating.value),
-        text: text.value.trim(),
-        date: new Date().toISOString().split('T')[0]
-      });
-      saveReviews(reviews);
-      form.reset();
-      document.getElementById('feedbackSuccess').style.display = 'block';
-      setTimeout(() => document.getElementById('feedbackSuccess').style.display = 'none', 4000);
-      renderReviews();
+      try {
+        await fetch('http://localhost:3000/api/reviews', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name.value.trim(),
+            rating: parseInt(rating.value),
+            text: text.value.trim(),
+            date: new Date().toISOString().split('T')[0]
+          })
+        });
+
+        form.reset();
+        document.getElementById('feedbackSuccess').style.display = 'block';
+        setTimeout(() => document.getElementById('feedbackSuccess').style.display = 'none', 4000);
+        renderReviews();
+      } catch (err) {
+        console.error(err);
+        alert('Failed to submit review. Server might be offline.');
+      }
     }
   });
 });

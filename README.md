@@ -25,7 +25,7 @@ To provide an online presence for 1.28 Coffee x Cocktails, promote its day-to-ni
 - `reservations.html` – Cocktail Bar reservation form (18+)
 - `reviews.html` – Customer reviews & ratings
 - `contact.html` – Contact form + embedded Google Map
-- `admin.html` – Admin Dashboard (localStorage-backed CMS)
+- `admin.html` – Admin Dashboard (localStorage-backed CMS, login-protected)
 - `assets/` – Images, icons, logo
 - `css/` – Stylesheets
 - `js/` – JavaScript modules

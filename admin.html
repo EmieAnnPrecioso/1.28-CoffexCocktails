@@ -4,7 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard | 1.28 Coffee x Cocktails</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // This script handles the layout lock/unlock.
+    // It checks if we already have a session. If not, it adds the 'locked' class.
+    try {
+      var s = JSON.parse(sessionStorage.getItem('adm_session'));
+      if (!(s && Date.now() - s.t < 1200000)) {
+        document.documentElement.classList.add('locked');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('locked');
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -22,8 +37,31 @@
     </nav>
   </header>
 
+  <!-- Login Gate -->
+  <section id="loginGate" class="login-gate">
+    <form id="loginForm" class="login-card" autocomplete="off" novalidate>
+      <div class="login-emoji">🔐</div>
+      <h1>Staff Only</h1>
+      <p>Sign in to manage the menu, promos, events and reservations.</p>
+      <label for="loginUser">Username</label>
+      <input type="text" id="loginUser" autocomplete="username" autocapitalize="off" spellcheck="false" />
+      <label for="loginPass">Password</label>
+      <div class="pw-wrap">
+        <input type="password" id="loginPass" autocomplete="current-password" />
+        <button type="button" id="pwToggle" aria-label="Show password">👁</button>
+      </div>
+      <div class="login-error" id="loginError" role="alert" style="color:red;"></div>
+      <button type="submit" class="btn-primary" style="width:100%; margin:0.4rem 0 0;">Unlock Dashboard</button>
+      <a class="back-link" href="index.html">&larr; Back to the website</a>
+    </form>
+  </section>
+
+  <!-- Admin Dashboard -->
   <div class="admin-container">
-    <h1 style="text-align:center; color:var(--forest); font-weight:300; letter-spacing:2px; font-style:italic;">
+    <div class="admin-bar">
+      <button type="button" onclick="logout()" class="btn-outline">Log out 🔒</button>
+    </div>
+    <h1 style="text-align:center; color:var(--navy); font-weight:300; letter-spacing:2px; font-style:italic;">
       Admin Dashboard
     </h1>
     <p style="text-align:center; color:#666; margin-bottom:1.5rem;">
@@ -124,23 +162,72 @@
 
   <div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:2000; align-items:center; justify-content:center;">
     <div style="background:white; padding:1.8rem; border-radius:14px; width:90%; max-width:520px; max-height:85vh; overflow-y:auto;">
-      <h3 id="modalTitle" style="color:var(--forest); margin-bottom:1rem;">Add Item</h3>
+      <h3 id="modalTitle" style="color:var(--navy); margin-bottom:1rem;">Add Item</h3>
       <div id="modalBody"></div>
       <div style="display:flex; gap:0.5rem; margin-top:1rem;">
         <button class="btn-primary" id="modalSave" style="flex:1;">Save</button>
-        <button class="btn-secondary" style="flex:1; color:var(--forest); border-color:var(--forest);" onclick="closeModal()">Cancel</button>
+        <button class="btn-secondary" style="flex:1; color:var(--navy); border-color:var(--navy);" onclick="closeModal()">Cancel</button>
       </div>
     </div>
   </div>
 
   <footer>
-    <p style="color:var(--neon); letter-spacing:1px; font-size:0.9rem; margin-bottom:0.6rem;">
-      Neighborhood cafe&nbsp;|&nbsp;good coffee, good pasta, good vibes&nbsp;|&nbsp;☕😌
-    </p>
-    <p>&copy; 2025 1.28 Coffee x Cocktails — Admin Panel</p>
+    <div class="footer-main">
+      <span class="footer-brand">1.28 Coffee x Cocktails</span>
+      <nav class="footer-links">
+        <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a><a href="cocktail-bar.html">Cocktail Bar</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="reservation.html">Reserve</a><a href="contact.html">Contact</a><a href="feedback.html">Reviews</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/p/128-coffee-x-cocktails-61559995893863/" target="_blank" aria-label="Facebook">f</a><a href="https://www.instagram.com/1.28coffeexcocktails" target="_blank" aria-label="Instagram">ig</a><a href="https://www.tiktok.com/@1.28coffeexcocktails" target="_blank" aria-label="TikTok">tt</a>
+      </div>
+    </div>
+    <p class="footer-bottom">1409 Paz Street, Paco, Manila &nbsp;|&nbsp; Mon&ndash;Sat &middot; Sun closed &nbsp;|&nbsp; &copy; 2026 1.28 Coffee x Cocktails</p>
+    <p class="footer-bottom">BSIS/BSIT Web Development Project &mdash; Phase 1 &nbsp;&middot;&nbsp; <a class="staff-link" href="admin.html">Staff login</a></p>
   </footer>
 
-  <script src="js/menu.js"></script>
+  <script>
+    // 1. Handle the Login Form
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('loginUser').value;
+      const password = document.getElementById('loginPass').value;
+      const errorMsg = document.getElementById('loginError');
+
+      try {
+        const res = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        if (res.ok) {
+          // Success! Remove the 'locked' CSS class and set session
+          sessionStorage.setItem('adm_session', JSON.stringify({ t: Date.now() }));
+          document.documentElement.classList.remove('locked');
+          
+          if (typeof loadAllTables === 'function') loadAllTables();
+        } else {
+          errorMsg.textContent = 'Invalid username or password.';
+        }
+      } catch (err) {
+        console.error("Login error:", err);
+        errorMsg.textContent = 'Server offline. Is node server.js running?';
+      }
+    });
+
+    // 2. Handle Password Toggle
+    document.getElementById('pwToggle').addEventListener('click', () => {
+      const p = document.getElementById('loginPass');
+      p.type = p.type === 'password' ? 'text' : 'password';
+    });
+
+    // 3. Handle Logout
+    function logout() {
+      sessionStorage.removeItem('adm_session');
+      window.location.reload();
+    }
+  </script>
+  
   <script src="js/admin.js"></script>
 </body>
 </html>
